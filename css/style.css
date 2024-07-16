@@ -6,9 +6,10 @@ body {
 }
 
 header {
-    background: #808080; /* Changed from #333 to gray (#808080) */
+    background: #333;
     color: #fff;
-    padding: 1rem 0;
+    padding: 10px 0;
+    text-align: center;
 }
 
 header nav ul {
