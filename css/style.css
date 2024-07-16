@@ -1,26 +1,28 @@
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
 header {
-  background: #333;
-  color: #fff;
-  padding: 1rem 0;
+    background: #808080; /* Changed from #333 to gray (#808080) */
+    color: #fff;
+    padding: 1rem 0;
 }
 
 header nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 header nav ul li {
-  margin: 0 1rem;
+    margin: 0 1rem;
 }
 
 header nav ul li a {
-  color:
+    color: #fff; /* Ensure the text remains white for visibility */
+    text-decoration: none;
+}
