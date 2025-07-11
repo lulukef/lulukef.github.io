@@ -1,1 +1,1 @@
-Hi, this is my website for the How to make almost anything. 
+Hi this is my personal website!
