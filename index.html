@@ -4,126 +4,120 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laxman Kafle</title>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 10px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-        }
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .about-me img {
-            max-width: 200px;
-            height: auto;
-            border-radius: 50%;
-            margin: 0 auto;
-            display: block;
-        }
-        .about-text {
-            text-align: center;
-        }
-        .interests-education {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .interests, .education {
-            width: 48%;
-        }
-        footer {
-            text-align: center;
-            padding: 10px 0;
-            background: #333;
-            color: #fff;
-            margin-top: 20px;
-        }
-        .social-links img {
-            width: 24px;
-            height: 24px;
-            margin-right: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/templatemo-style.css">
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="papers.html">Publications</a></li>
-                <li><a href="projects.html">Projects</a></li>
-                <li><a href="work.html">Work Experience</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section class="about-me">
-            <img src="images/laxman_kafle.jpg" alt="Laxman Kafle">
-            <div class="about-text">
-                <h1>Laxman Kafle</h1>
-                <h2>PhD Student</h2>
-                <h3>Massachusetts Institute of Technology</h3>
-                <p>
-                    Laxman Kafle is a PhD student in Prof. Herbert Einstein’s lab in Civil and Environmental Engineering. He completed his Master’s degree from Tsinghua University, China and undergraduate from Tribhuvan University, Nepal in Civil Engineering. His research interests include geothermal energy, fracture mechanics, and numerical modeling.
-                </p>
-                <p>
-                    I am interested in geo-rock mechanics, geothermal energy, and experimental geotechnique. Beyond my research, I am deeply committed to promoting sustainability and addressing the environmental challenges we face. I believe that the most significant breakthroughs occur when we collaborate and share knowledge. I’m always open to partnerships, discussions, and interdisciplinary projects with like-minded professionals.
-                </p>
-            </div>
-        </section>
-        <section class="interests-education">
-            <div class="interests">
-                <h3>Interests</h3>
-                <ul>
-                    <li>Geo-rock mechanics</li>
-                    <li>Geothermal energy</li>
-                    <li>Experimental geotechnique</li>
-                    <li>Sustainability</li>
-                    <li>Interdisciplinary projects</li>
+    <!-- Page Loader -->
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+
+    </div>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-film mr-2"></i>
+                Laxman Kafle
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-1 active" aria-current="page" href="index.html">Main Page</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-2" href="https://fab.cba.mit.edu/classes/863.24/people/LaxmanKafle/">HTMAA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-2" href="resume.html">Resume</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link nav-link-3" href="contact.html">Contact</a>
+                    </li>
                 </ul>
             </div>
-            <div class="education">
-                <h3>Education</h3>
-                <ul>
-                    <li>PhD in Civil and Environmental Engineering, Massachusetts Institute of Technology</li>
-                    <li>Master's degree from Tsinghua University, China</li>
-                    <li>Undergraduate from Tribhuvan University, Nepal in Civil Engineering</li>
+        </div>
+    </nav>
+    <div class="tm-hero d-flex justify-content-center align-items-center" data-parallax="scroll" data-image-src="img/main/hero.jpg"></div>
+    <!-- About Me Section -->
+    <section id="about" class="container mt-5 d-flex justify-content-center">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2>About Me</h2>
+                <div class="d-flex justify-content-center">
+                    <img src="img/main/Laxman_Kafle.jpeg" alt="Your Photo" class="img-fluid rounded-circle" style="width: 1.5in; height: 1.5in;">
+                </div>
+                <p>I am a second year PhD student in Einstein Rock Mechanics lab in Civil and Environmental Engineering at MIT. I do research on electric fracturing of the rock. My research interests include geothermal energy, fracture mechanics, and numerical modeling.</p>
+            </div>
+            <div class="row justify-content-center">
+                <ul class="tm-social-links d-flex justify-content-center pl-0 mb-5">
+                    <li class="mb-2"><a href="https://www.facebook.com/laxman.king.kafle/"><i class="fab fa-facebook fa-2x"></i></a></li>
+                    <li class="mb-2"><a href="https://x.com/laxman_kafle"><i class="fab fa-twitter fa-2x"></i></a></li>
+                    <li class="mb-2"><a href="https://www.instagram.com/laxmankafle02/"><i class="fab fa-instagram fa-2x"></i></a></li>
+                    <li class="mb-2"><a href="https://www.linkedin.com/in/laxman360/"><i class="fab fa-linkedin fa-2x"></i></a></li>
                 </ul>
             </div>
-        </section>
-    </main>
-    <footer>
-        <p>© 2024 Laxman Kafle</p>
-        <div class="social-links">
-            <a href="https://www.facebook.com/laxman.king.kafle/"><img src="images/facebook.jpeg" alt="Facebook"></a>
-            <a href="https://www.linkedin.com/in/laxman360/"><img src="images/LinkedIn.png" alt="LinkedIn"></a>
-            <a href="https://www.instagram.com/laxmankafle02/"><img src="images/instagram.png" alt="Instagram"></a>
+        </div>
+    </section>
+    <div class="container-fluid tm-container-content tm-mt-60">
+        <div class="row mb-4">
+            <h2 class="col-6 tm-text-primary">
+                Vlogs
+            </h2>
+        </div>
+        <div class="row tm-mb-90 tm-gallery">
+        	<div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+                <figure class="effect-ming tm-video-item">
+                    <img src="img/main/Final_project.jpg" alt="Image" class="img-fluid">
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                        <h2>How to make (Almost) anything class website</h2>
+                        <a href="https://fab.cba.mit.edu/classes/863.24/people/LaxmanKafle/">View more</a>
+                    </figcaption>                    
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                    <span class="tm-text-gray-light">04 Sept 2024</span>
+                    <span>Project 0</span>
+                </div>
+            </div>
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-12 mb-5">
+                <figure class="effect-ming tm-video-item">
+                    <img src="img/main/Week2.jpg" alt="Image" class="img-fluid">
+                    <figcaption class="d-flex align-items-center justify-content-center">
+                        <h2>Another one</h2>
+                        <a href="Week2.html">View more</a>
+                    </figcaption>                    
+                </figure>
+                <div class="d-flex justify-content-between tm-text-gray">
+                    <span class="tm-text-gray-light">11 Sept 2024</span>
+                    <span>Week 2</span>
+                </div>
+            </div>
+        </div> <!-- row -->
+    </div> <!-- container-fluid, tm-container-content -->
+
+    <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
+        <div class="container-fluid tm-container-small">
+            <div class="row">
+                <div class="col-lg-8 col-md-7 col-12 px-5 mb-3">
+                    Copyright 2024 Laxman Kafle. All rights reserved.
+                </div>
+                <div class="col-lg-4 col-md-5 col-12 px-5 text-right">
+                    Designed by <a href="https://templatemo.com" class="tm-text-gray" rel="sponsored" target="_parent">TemplateMo</a>
+                </div>
+            </div>
         </div>
     </footer>
+    <script src="js/plugins.js"></script>
+    <script>
+        $(window).on("load", function() {
+            $('body').addClass('loaded');
+        });
+    </script>
 </body>
 </html>
