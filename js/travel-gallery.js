@@ -143,7 +143,30 @@
       const item = document.createElement('div');
       item.className = 'gallery-item';
       if (isImage(file.name) || isHeic(file.name)) {
-        const displayUrl = await buildDisplayUrl(relPath);
+        // Prefer GitHub raw download URL for binary fetch reliability
+        const srcForFetch = file.download_url || `/${relPath}`;
+        let displayUrl;
+        if (isHeic(file.name)) {
+          // Convert HEIC to PNG then resize
+          await ensureHeicLib();
+          try {
+            const heicBlob = await fetchBlob(srcForFetch);
+            const pngBlob = await window.heic2any({ blob: heicBlob, toType: 'image/png' });
+            const resized = await resizeToPng(pngBlob, MAX_DIM);
+            displayUrl = URL.createObjectURL(resized);
+          } catch (e) {
+            console.warn('HEIC conversion failed; skipping', file.name, e);
+          }
+        } else {
+          try {
+            const imgBlob = await fetchBlob(srcForFetch);
+            const resized = await resizeToPng(imgBlob, MAX_DIM);
+            displayUrl = URL.createObjectURL(resized);
+          } catch (e) {
+            console.warn('Image resize failed; using original path', file.name, e);
+            displayUrl = `/${relPath}`;
+          }
+        }
         item.innerHTML = `<img src="${displayUrl}" alt="${file.name}" loading="lazy"/>`;
       } else if (isVideo(file.name)) {
         const url = `/${relPath}`;
