@@ -1,5 +1,16 @@
-:not(:defined) > * {
-  display: none;
+/*
+  Custom theme for Laxman Kafle — MIT CEE PhD portfolio
+  Palette: MIT Cardinal #A31F34 (primary), Slate #0E1E2B (text), Gray #6B7280, Light #F8FAFC
+  Typography: Inter (UI), Source Serif 4 (headings)
+*/
+
+:root {
+  --mit-cardinal: #A31F34;
+  --mit-cardinal-600: #8c1a2b;
+  --text: #0E1E2B;
+  --muted: #6B7280;
+  --light: #F8FAFC;
+  --white: #ffffff;
 }
 
 html, body {
@@ -7,117 +18,77 @@ html, body {
   padding: 0;
   width: 100%;
   height: 100%;
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
-model-viewer {
-  width: 1000px;
-  height: 650px;
-  background-color: #ffffff;
+h1, h2, h3, h4 {
+  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
 }
 
-.progress-bar {
-  display: block;
-  width: 33%;
-  height: 10%;
-  max-height: 2%;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate3d(-50%, -50%, 0);
-  border-radius: 25px;
-  box-shadow: 0px 3px 10px 3px rgba(0, 0, 0, 0.5), 0px 0px 5px 1px rgba(0, 0, 0, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  background-color: rgba(0, 0, 0, 0.5);
-}
+/* Navbar */
+.navbar-brand { font-weight: 600; }
+.navbar-light.bg-white { background-color: #ffffff !important; }
+.navbar .nav-link { color: #334155; font-weight: 500; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--mit-cardinal); }
 
-.progress-bar.hide {
-  visibility: hidden;
-  transition: visibility 0.3s;
-}
-
-.update-bar {
-  background-color: rgba(255, 255, 255, 0.9);
-  width: 0%;
-  height: 100%;
-  border-radius: 25px;
-  float: left;
-  transition: width 0.3s;
-}
-
-#ar-button {
-  background-image: url(ar_icon.png);
-  background-repeat: no-repeat;
-  background-size: 20px 20px;
-  background-position: 12px 50%;
-  background-color: #fff;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  bottom: 16px;
-  padding: 0px 16px 0px 40px;
-  font-family: Roboto Regular, Helvetica Neue, sans-serif;
-  font-size: 14px;
-  color:#4285f4;
-  height: 36px;
-  line-height: 36px;
-  border-radius: 18px;
-  border: 1px solid #DADCE0;
-}
-
-#ar-button:active {
-  background-color: #E8EAED;
-}
-
-#ar-button:focus {
-  outline: none;
-}
-
-#ar-button:focus-visible {
-  outline: 1px solid #4285f4;
-}
-
-@keyframes circle {
-  from { transform: translateX(-50%) rotate(0deg) translateX(50px) rotate(0deg); }
-  to   { transform: translateX(-50%) rotate(360deg) translateX(50px) rotate(-360deg); }
-}
-
-@keyframes elongate {
-  from { transform: translateX(100px); }
-  to   { transform: translateX(-100px); }
-}
-
-model-viewer > #ar-prompt {
-  position: absolute;
-  left: 50%;
-  bottom: 60px;
-  animation: elongate 2s infinite ease-in-out alternate;
-  display: none;
-}
-
-model-viewer[ar-status="session-started"] > #ar-prompt {
-  display: block;
-}
-
-model-viewer > #ar-prompt > img {
-  animation: circle 4s linear infinite;
-}
-
-canvas {
-  display: block;
-}
-
-/* Model Viewer Containers */
-.model-viewer-container {
-  width: 1000px;
-  height: 750px;
-  margin: 20px auto;
-  background-color: #202020;
-  position: relative;
-}
-
+/* Hero */
 .tm-hero {
-  height: 100vh;
+  height: 90vh;
   background-size: cover;
   background-position: center;
+  position: relative;
 }
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(14,30,43,0.55) 0%, rgba(14,30,43,0.55) 100%);
+}
+.hero-content { position: relative; z-index: 2; }
+.text-white-75 { color: rgba(255,255,255,0.85); }
+.fw-700 { font-weight: 700; }
+.fw-600 { font-weight: 600; }
+.gap-3 { gap: 0.75rem; }
+
+.btn-primary { background-color: var(--mit-cardinal); border-color: var(--mit-cardinal); }
+.btn-primary:hover { background-color: var(--mit-cardinal-600); border-color: var(--mit-cardinal-600); }
+
+/* Sections */
+.section { padding: 4rem 1rem; }
+.section h2 { font-weight: 700; }
+
+/* Avatar */
+.avatar-lg { width: 160px; height: 160px; object-fit: cover; }
+
+/* Tags */
+.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.tag { background: #fff4f6; color: var(--mit-cardinal); border: 1px solid #f5c8d0; padding: 0.35rem 0.6rem; border-radius: 999px; font-size: 0.9rem; }
+
+/* Publications */
+.pub-list { padding-left: 1rem; }
+.pub-list li { margin-bottom: 0.75rem; }
+.pub-title { font-weight: 600; }
+.pub-authors, .pub-venue { color: var(--muted); margin-left: 0.25rem; }
+.pub-link { margin-left: 0.5rem; font-size: 0.95rem; }
+.pub-link.disabled { pointer-events: none; opacity: 0.6; }
+
+/* Timeline */
+.timeline { list-style: none; padding-left: 0; border-left: 2px solid #e5e7eb; margin-left: 0.5rem; }
+.timeline li { position: relative; padding-left: 1rem; margin-bottom: 0.75rem; }
+.timeline li::before {
+  content: '';
+  position: absolute; left: -7px; top: 0.35rem;
+  width: 10px; height: 10px; background: var(--mit-cardinal); border-radius: 50%;
+}
+.timeline .time { font-weight: 600; color: var(--mit-cardinal); margin-right: 0.5rem; }
+
+/* Footer */
+.tm-footer a { color: inherit; }
+.tm-footer a:hover { color: var(--mit-cardinal); }
+
+/* Utilities */
+.link-muted { color: #64748b; }
+.link-muted:hover { color: var(--mit-cardinal); }
+
+/* Keep existing parallax hero height from template if used via data-parallax */
+.tm-hero[data-parallax] { background-attachment: fixed; }
