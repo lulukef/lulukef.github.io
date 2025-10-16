@@ -1,15 +1,18 @@
 /*
-  Custom theme for Laxman Kafle — MIT CEE PhD portfolio
-  Palette: MIT Cardinal #A31F34 (primary), Slate #0E1E2B (text), Gray #6B7280, Light #F8FAFC
-  Typography: Inter (UI), Source Serif 4 (headings)
+  Futuristic dark neon theme for Laxman Kafle
+  Palette: Cyan #00E5FF, Pink #FF3D81, Deep Space #0a0b10, Panels #0e1320
+  Typography: Space Grotesk (UI), Orbitron (headings)
 */
 
 :root {
-  --mit-cardinal: #A31F34;
-  --mit-cardinal-600: #8c1a2b;
-  --text: #0E1E2B;
-  --muted: #6B7280;
-  --light: #F8FAFC;
+  --bg: #0a0b10;
+  --bg-accent: #0e1320;
+  --panel: rgba(255, 255, 255, 0.06);
+  --panel-border: rgba(255, 255, 255, 0.12);
+  --text: #e6f1ff;
+  --muted: #8DA1B9;
+  --neon: #00E5FF;
+  --neon-2: #FF3D81;
   --white: #ffffff;
 }
 
@@ -19,18 +22,27 @@ html, body {
   width: 100%;
   height: 100%;
   color: var(--text);
-  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  background:
+    radial-gradient(1000px 600px at 20% -10%, rgba(0, 229, 255, 0.12), transparent 60%),
+    radial-gradient(800px 500px at 120% 10%, rgba(255, 61, 129, 0.10), transparent 60%),
+    linear-gradient(180deg, #090b12 0%, #0b0f16 60%, #0a0b10 100%);
+  font-family: 'Space Grotesk', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
 }
 
 h1, h2, h3, h4 {
-  font-family: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  font-family: 'Orbitron', 'Space Grotesk', sans-serif;
+  letter-spacing: 0.5px;
 }
 
-/* Navbar */
-.navbar-brand { font-weight: 600; }
-.navbar-light.bg-white { background-color: #ffffff !important; }
-.navbar .nav-link { color: #334155; font-weight: 500; }
-.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--mit-cardinal); }
+/* Navbar (glass) */
+.navbar { border-bottom: 1px solid var(--panel-border); }
+.glass-nav {
+  background: var(--panel) !important;
+  backdrop-filter: saturate(140%) blur(12px);
+}
+.navbar-brand { font-weight: 700; color: var(--text) !important; }
+.navbar .nav-link { color: #c9d6ff; font-weight: 600; letter-spacing: 0.2px; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--neon) !important; }
 
 /* Hero */
 .tm-hero {
@@ -42,53 +54,56 @@ h1, h2, h3, h4 {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(14,30,43,0.55) 0%, rgba(14,30,43,0.55) 100%);
+  background: linear-gradient(125deg, rgba(0,229,255,0.25), rgba(255,61,129,0.2) 40%, rgba(10,11,16,0.4) 75%);
+  animation: hueShift 12s ease-in-out infinite alternate;
+}
+@keyframes hueShift {
+  0% { filter: hue-rotate(0deg) saturate(1.1); }
+  100% { filter: hue-rotate(18deg) saturate(1.3); }
 }
 .hero-content { position: relative; z-index: 2; }
-.text-white-75 { color: rgba(255,255,255,0.85); }
+.text-white-75 { color: rgba(230,241,255,0.9); }
 .fw-700 { font-weight: 700; }
 .fw-600 { font-weight: 600; }
 .gap-3 { gap: 0.75rem; }
 
-.btn-primary { background-color: var(--mit-cardinal); border-color: var(--mit-cardinal); }
-.btn-primary:hover { background-color: var(--mit-cardinal-600); border-color: var(--mit-cardinal-600); }
+/* Buttons */
+.btn-primary {
+  border: none;
+  background: linear-gradient(135deg, var(--neon), var(--neon-2));
+  box-shadow: 0 8px 24px rgba(0,229,255,0.25), 0 0 0 1px rgba(255,255,255,0.05) inset;
+  color: #081018;
+}
+.btn-primary:hover { filter: brightness(1.05); box-shadow: 0 10px 28px rgba(255,61,129,0.25); }
+.btn-outline-light { border-color: rgba(255,255,255,0.3); color: var(--text); }
+.btn-outline-light:hover { background: rgba(255,255,255,0.08); }
+.btn-light { background: rgba(255,255,255,0.9); color: #0c111a; }
 
 /* Sections */
 .section { padding: 4rem 1rem; }
-.section h2 { font-weight: 700; }
+.section h2 { font-weight: 700; color: var(--text); text-shadow: 0 0 24px rgba(0,229,255,0.15); }
 
 /* Avatar */
-.avatar-lg { width: 160px; height: 160px; object-fit: cover; }
+.avatar-lg { width: 160px; height: 160px; object-fit: cover; border: 2px solid var(--panel-border); box-shadow: 0 6px 24px rgba(0,229,255,0.12); }
 
 /* Tags */
-.tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-.tag { background: #fff4f6; color: var(--mit-cardinal); border: 1px solid #f5c8d0; padding: 0.35rem 0.6rem; border-radius: 999px; font-size: 0.9rem; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tag { background: rgba(0,229,255,0.08); color: var(--neon); border: 1px solid rgba(0,229,255,0.25); padding: 0.4rem 0.7rem; border-radius: 999px; font-size: 0.9rem; }
 
 /* Publications */
-.pub-list { padding-left: 1rem; }
-.pub-list li { margin-bottom: 0.75rem; }
-.pub-title { font-weight: 600; }
-.pub-authors, .pub-venue { color: var(--muted); margin-left: 0.25rem; }
-.pub-link { margin-left: 0.5rem; font-size: 0.95rem; }
-.pub-link.disabled { pointer-events: none; opacity: 0.6; }
-
-/* Timeline */
-.timeline { list-style: none; padding-left: 0; border-left: 2px solid #e5e7eb; margin-left: 0.5rem; }
-.timeline li { position: relative; padding-left: 1rem; margin-bottom: 0.75rem; }
-.timeline li::before {
-  content: '';
-  position: absolute; left: -7px; top: 0.35rem;
-  width: 10px; height: 10px; background: var(--mit-cardinal); border-radius: 50%;
-}
-.timeline .time { font-weight: 600; color: var(--mit-cardinal); margin-right: 0.5rem; }
+.pub-list { padding-left: 1.1rem; }
+.pub-list li { margin-bottom: 0.9rem; }
+.pub-list a { color: var(--neon); }
+.pub-list a:hover { color: var(--neon-2); text-decoration: none; }
 
 /* Footer */
-.tm-footer a { color: inherit; }
-.tm-footer a:hover { color: var(--mit-cardinal); }
+.tm-footer { background: transparent; border-top: 1px solid var(--panel-border); }
+.tm-footer a { color: var(--text); }
+.tm-footer a:hover { color: var(--neon); }
 
 /* Utilities */
-.link-muted { color: #64748b; }
-.link-muted:hover { color: var(--mit-cardinal); }
+.link-muted { color: var(--muted); }
+.link-muted:hover { color: var(--neon); }
 
 /* Keep existing parallax hero height from template if used via data-parallax */
 .tm-hero[data-parallax] { background-attachment: fixed; }
