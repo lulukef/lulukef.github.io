@@ -167,7 +167,8 @@
             displayUrl = `/${relPath}`;
           }
         }
-        item.innerHTML = `<img src="${displayUrl}" alt="${file.name}" loading="lazy"/>`;
+        // Wrap in clickable anchor for lightbox
+        item.innerHTML = `<a href="${displayUrl}" class="lightbox-link"><img src="${displayUrl}" alt="${file.name}" loading="lazy"/></a>`;
       } else if (isVideo(file.name)) {
         const url = `/${relPath}`;
         // MOV may not play in all browsers; provide controls
@@ -222,4 +223,31 @@
 
   // Expose globals
   window.TravelGallery = { renderAlbumGallery, renderTravelHub };
+})();
+
+// Simple lightbox viewer
+(function(){
+  function createLightbox(){
+    if (document.getElementById('lb-overlay')) return;
+    const overlay = document.createElement('div');
+    overlay.id = 'lb-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;';
+    const img = document.createElement('img');
+    img.id = 'lb-image';
+    img.style.cssText = 'max-width:95%;max-height:95%;box-shadow:0 10px 40px rgba(0,229,255,0.2);border-radius:10px;';
+    overlay.appendChild(img);
+    overlay.addEventListener('click', ()=> overlay.style.display='none');
+    document.body.appendChild(overlay);
+  }
+  function onClick(e){
+    const a = e.target.closest('a.lightbox-link');
+    if(!a) return;
+    e.preventDefault();
+    createLightbox();
+    const overlay = document.getElementById('lb-overlay');
+    const img = document.getElementById('lb-image');
+    img.src = a.getAttribute('href');
+    overlay.style.display = 'flex';
+  }
+  window.addEventListener('click', onClick);
 })();
