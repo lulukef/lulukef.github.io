@@ -5,9 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Laxman Kafle | PhD Candidate, MIT CEE</title>
     <meta name="description" content="Personal website of Laxman Kafle, PhD candidate in Rock Mechanics at MIT CEE. Research in electric fracturing, geothermal energy, fracture mechanics, and numerical modeling.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Orbitron:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/templatemo-style.css">
@@ -15,7 +12,7 @@
     <link rel="stylesheet" href="css/styles.css?v=20251015">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg glass-nav fixed-top shadow-sm navbar-dark">
+    <nav class="navbar navbar-expand-lg glass-nav fixed-top navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
                 <i class="fas fa-graduation-cap mr-2"></i>
@@ -26,27 +23,61 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-1 active" aria-current="page" href="#home">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-2" href="#research">Research</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-2" href="#publications">Publications</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-2" href="resume.html">Resume</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-link-3" href="contact.html">Contact</a>
-                    </li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="research.html">Research & Publications</a></li>
+                <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="travel.html">Travel</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-    <header id="home" class="tm-hero d-flex justify-content-center align-items-center position-relative" data-parallax="scroll" data-image-src="img/main/hero.jpg">
+    <!-- About Me Section -->
+    <section id="about" class="section container d-flex justify-content-center" style="padding-top: 120px;">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 text-center">
+                <h2>About Me</h2>
+                <div class="d-flex justify-content-center">
+                    <img src="img/main/Laxman_Kafle.jpeg" alt="Portrait of Laxman Kafle" class="img-fluid rounded-circle avatar-lg">
+                </div>
+                <p>
+                I’m a PhD student in Civil and Environmental Engineering at MIT, working in the Rock Mechanics Lab.
+                My research focuses on electrical fracturing of rock to permeability enhancement for enhanced geothermal systems and other subsurface applications.
+                I really enjoy building things myself and solving hands-on problems, especially anything related to digital design and fabrication.
+                </p>
+
+                <p>
+                Before MIT, I worked on earthquake rehabilitation projects in Nepal, including community housing reconstruction,
+                hospitals, and a blood bank. I did my masters at Tsinghua University, Beijing China and during my master’s, I worked on numerically modeling rainfall- and reservoir water level
+                fluctuation–induced landslides in large reservoir areas, and I also simulated potential scenarios of
+                landslide-induced tsunamis in reservoir settings.
+                </p>
+
+                <p>
+                As a researcher, I enjoy working with experimental setups, sensors, and data, and I like digging into how systems
+                actually behave in the lab.
+                </p>
+
+                <p>
+                At MIT, my work is focused on understanding electrical pulse–induced rock fracturing from different angles.
+                I run a range of experiments looking at how the number of pulses affects fracturing, along with
+                current–voltage–capacitance effects, time dependence, and chemical changes in the system.
+                The goal is to better understand this dynamic shock-driven fracturing process and explore its potential applications,
+                from enhanced geothermal systems for cleaner energy extraction to other fields like mining and tunneling.
+                </p>
+            </div>
+            <div class="row justify-content-center">
+                <ul class="tm-social-links d-flex justify-content-center pl-0 mb-4">
+                    <li class="mb-2 mx-2"><a href="https://www.linkedin.com/in/laxman360/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a></li>
+                    <li class="mb-2 mx-2"><a href="https://x.com/laxman_kafle" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a></li>
+                    <li class="mb-2 mx-2"><a href="https://www.instagram.com/laxmankafle02/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram fa-2x"></i></a></li>
+                    <li class="mb-2 mx-2"><a href="https://www.facebook.com/laxman.king.kafle/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook fa-2x"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <header id="home" class="tm-hero d-flex justify-content-center align-items-center position-relative" data-parallax="scroll" data-image-src="img/main/hero.jpg" style="height: 65vh; min-height: 500px;">
         <div class="hero-overlay"></div>
         <div class="container text-center hero-content">
             <h1 class="display-5 fw-700 text-white mb-3">Laxman Kafle</h1>
@@ -59,67 +90,6 @@
             </div>
         </div>
     </header>
-    <!-- About Me Section -->
-    <section id="about" class="section container d-flex justify-content-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 text-center">
-                <h2>About Me</h2>
-                <div class="d-flex justify-content-center">
-                    <img src="img/main/Laxman_Kafle.jpeg" alt="Portrait of Laxman Kafle" class="img-fluid rounded-circle avatar-lg">
-                </div>
-                <p class="mt-3">I'm a second-year PhD student in the <strong>Einstein Rock Mechanics Lab</strong> (MIT CEE). My work focuses on <strong>electric fracturing of rock</strong> for sustainable subsurface engineering. I am broadly interested in <strong>geothermal energy</strong>, <strong>fracture mechanics</strong>, <strong>Experimental Mechanics</strong>, and <strong>digital fabrication</strong>.</p>
-            </div>
-            <div class="row justify-content-center">
-                <ul class="tm-social-links d-flex justify-content-center pl-0 mb-4">
-                    <li class="mb-2 mx-2"><a href="https://www.linkedin.com/in/laxman360/" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin fa-2x"></i></a></li>
-                    <li class="mb-2 mx-2"><a href="https://x.com/laxman_kafle" aria-label="X (Twitter)" target="_blank" rel="noopener noreferrer"><i class="fab fa-twitter fa-2x"></i></a></li>
-                    <li class="mb-2 mx-2"><a href="https://www.instagram.com/laxmankafle02/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram fa-2x"></i></a></li>
-                    <li class="mb-2 mx-2"><a href="https://www.facebook.com/laxman.king.kafle/" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook fa-2x"></i></a></li>
-                </ul>
-            </div>
-        </div>
-    </section>
-    <!-- Research Interests -->
-    <section id="research" class="section container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h2 class="mb-3">Research Interests</h2>
-                <div class="tags">
-                    <span class="tag">Electric Fracturing</span>
-                    <span class="tag">Geothermal Energy</span>
-                    <span class="tag">Rock Mechanics</span>
-                    <span class="tag">Fracture Mechanics</span>
-                    <span class="tag">Experimental Mechanics</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications -->
-    <section id="publications" class="section container">
-        <div class="row justify-content-center">
-            <div class="col-lg-10">
-                <h2 class="mb-3">Publications</h2>
-                <ol class="pub-list">
-                    <li>
-                        Kafle, L., R. Villamor-Lora, and H.H. Einstein. “Electrical Rock Fracturing Techniques and Applications.” In <em>59th Rock Mechanics/Geomechanics Symposium</em>, Santa Fe, NM, 8–11 Jun 2025. <a href="https://doi.org/10.56952/ARMA-2025-0737" target="_blank" rel="noopener">https://doi.org/10.56952/ARMA-2025-0737</a>
-                    </li>
-                    <li>
-                        Kafle, L., R. Villamor-Lora, U. Mok, H.H. Einstein, and J. Germaine. “Characterization of Direction Dependent Properties of Sierra White Granite: Initial Results.” In <em>58th Rock Mechanics/Geomechanics Symposium</em>, Golden, CO, 2024. <a href="https://doi.org/10.56952/ARMA-2024-0544" target="_blank" rel="noopener">https://doi.org/10.56952/ARMA-2024-0544</a>
-                    </li>
-                    <li>
-                        Kafle, L., Xu, W.-J., Nagel, T., 2024. “Numerical Investigation of a Potential Landslide-Induced Tsunami at the Suofengying Reservoir in China.” <em>Landslides</em>. <a href="https://doi.org/10.1007/s10346-024-02217-9" target="_blank" rel="noopener">https://doi.org/10.1007/s10346-024-02217-9</a>
-                    </li>
-                    <li>
-                        Kafle, L., Xu, W.-J., Nagel, T., 2022. “Influence of Rainfall and Reservoir Water Level Variation on Slope Stability and Evolution of Landslide-Tsunami: A Case Study of Bianjiazhai Landslide at Suofengying Reservoir in China.” Presented at <em>AGU Fall Meeting</em>, 2022.
-                    </li>
-                    <li>
-                        Kafle, L., Xu, W.-J., Zeng, S.-Y., Nagel, T., 2022. “A Numerical Investigation of Slope Stability Influenced by the Combined Effects of Reservoir Water Level Fluctuations and Precipitation: A Case Study of the Bianjiazhai Landslide in China.” <em>Engineering Geology</em>, 297, 106508. <a href="https://doi.org/10.1016/j.enggeo.2021.106508" target="_blank" rel="noopener">https://doi.org/10.1016/j.enggeo.2021.106508</a>
-                    </li>
-                </ol>
-            </div>
-        </div>
-    </section>
     
 
     <footer class="tm-bg-gray pt-5 pb-3 tm-text-gray tm-footer">
