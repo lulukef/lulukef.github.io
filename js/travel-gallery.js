@@ -197,6 +197,7 @@
     { slug: 'MIT-pictures', cover: '/img/travel/MIT-pictures/', date: 'Date: Since 2023' },
     { slug: 'New_York_2023', cover: '/img/travel/New_York_2023/', date: 'Date: December 24, 2024' },
     { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/', date: 'Date: January 12, 2025' },
+    { slug: 'Random_Nepal', cover: '/img/travel/Random_Nepal/', date: 'Date: Various' },
     { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/', date: 'Date: October, 2021' }
   ];
 
@@ -213,6 +214,7 @@
     'Boston': ['output-1.jpg','output-2.jpg','output-3.jpg','output-4.jpg','output-5.jpg','output-6.jpg','output-7.jpg','output-9.jpg','output-10.jpg','output-11.jpg','output-12.jpg','output-13.jpg','output-14.jpg','output-15.jpg','output-16.jpg','output-17.jpg','output-18.jpg','output-19.jpg','output-20.jpg','output-21.jpg','output-23.jpg','output-24.jpg','output-25.jpg','output-26.jpg','output-27.jpg','output-28.jpg'],
     'New_York_2023': ['IMG_1381.jpg','IMG_1382.jpg','IMG_1428.jpg','IMG_1438.jpg','IMG_8168.jpg','IMG_8220.jpg','IMG_8240.jpg','IMG_8428.jpg','IMG_8457.jpg','IMG_8502.jpg','IMG_8503.jpg','IMG_8700.jpg','IMG_9048.jpg'],
     'Picturesque_Pierce': ['IMG_5088.jpg','IMG_5092.jpg','IMG_5094.jpg','IMG_5098.jpg','IMG_5105.jpg','IMG_5111.jpg','IMG_5121.jpg','IMG_5125.jpg','IMG_5130.jpg','IMG_5131.jpg','IMG_5132.jpg','IMG_5133.jpg','IMG_5134.jpg','IMG_5135.jpg','IMG_5136.jpg','IMG_5137.jpg','IMG_5138.jpg'],
+    'Random_Nepal': ['20181003_175810.jpg','20181004_095622.jpg','20181004_095845.jpg','20181005_081401.jpg','IMG_2933.jpg','IMG_2941.jpg','IMG_3099.jpg','IMG_3106.jpg','IMG_4626.JPG'],
     'rara-nepal': ['IMG_20211009_134131.jpg','IMG_20211009_134350.jpg','IMG_20211009_154710.jpg','IMG_20211010_100914.jpg','IMG_20211010_101814.jpg','IMG_20211010_103959.jpg','IMG_20211010_114450.jpg','IMG_20211010_115338.jpg','IMG_20211010_115820.jpg','IMG_20211010_120524.jpg','IMG_20211010_132536.jpg','IMG_20211011_091107.jpg','IMG_20211011_101650.jpg','IMG_20211011_144849.jpg','IMG_20211012_120133.jpg','IMG_6861.jpg','IMG_6897.jpg','IMG_6907.jpg','IMG_6963.jpg','IMG_6975.jpg','IMG_6982.jpg','IMG_7031.jpg','IMG_7035.jpg','IMG_7141.jpg','IMG_7216.jpg','IMG_7217.jpg','IMG_7219.jpg','IMG_7270.jpg','IMG_7296.jpg','IMG_7428.jpg','IMG_7432.jpg','IMG_7436.jpg']
   };
 
