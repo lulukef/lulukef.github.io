@@ -125,16 +125,26 @@
     const container = document.querySelector(containerSelector);
     if (!container) return;
     const path = `${BASE}/${albumSlug}`;
-    const items = await listFolder(path);
-    if (!Array.isArray(items) || items.length === 0) {
+    
+    // Try to get files from API first
+    let items = await listFolder(path);
+    let media = [];
+    
+    if (Array.isArray(items) && items.length > 0) {
+      media = items.filter(i => i.type === 'file' && (isImage(i.name) || isHeic(i.name) || isVideo(i.name)));
+    }
+    
+    // If API failed or returned no media, use fallback list
+    if (media.length === 0 && FALLBACK_FILES[albumSlug]) {
+      console.log('Using fallback file list for', albumSlug);
+      media = FALLBACK_FILES[albumSlug].map(name => ({ name, type: 'file' }));
+    }
+    
+    if (media.length === 0) {
       container.innerHTML = `<div class="text-center link-muted">No media found yet. Drop images/videos in <code>${path}</code>.</div>`;
       return;
     }
-    const media = items.filter(i => i.type === 'file' && (isImage(i.name) || isHeic(i.name) || isVideo(i.name)));
-    if (media.length === 0) {
-      container.innerHTML = `<div class="text-center link-muted">No supported media found (images/videos).</div>`;
-      return;
-    }
+    
     const grid = document.createElement('div');
     grid.className = 'gallery-grid';
 
@@ -188,6 +198,14 @@
     { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/' }
   ];
 
+  // Fallback file lists for each album (when API is unavailable)
+  const FALLBACK_FILES = {
+    'MIT-pictures': ['IMG_3210.jpg','IMG_3211.jpg','IMG_3214.jpg','IMG_3217.jpg','IMG_3218.jpg','IMG_3219.jpg','IMG_3220.jpg','IMG_3221.jpg','IMG_3223.jpg','IMG_3224.jpg','IMG_3269.jpg','IMG_3271.jpg','IMG_3341.jpg','IMG_3343.jpg','IMG_3350.jpg','IMG_3358.jpg','IMG_3964.jpg','IMG_3965.jpg','IMG_3967.jpg','IMG_4645.jpg','IMG_4649.jpg','IMG_4650.jpg','IMG_4651.jpg','IMG_4652.jpg','IMG_4656.jpg','IMG_4657.jpg','IMG_4658.jpg','IMG_4674.jpg','IMG_4675.jpg','IMG_4676.jpg','IMG_4677.jpg','IMG_4680.jpg','IMG_4681.jpg','IMG_4683.jpg','IMG_5144.jpg','IMG_5508.jpg','IMG_5576.jpg','IMG_5779.jpg','IMG_5783.jpg','IMG_5784.jpg','IMG_5871.jpg','IMG_5879.jpg','IMG_5890.jpg','IMG_5891.jpg','IMG_6172.jpg','IMG_6460.jpg','IMG_6522.jpg','IMG_6523.jpg','IMG_6524.jpg','IMG_6525.jpg','IMG_6527.jpg','IMG_6611.jpg','IMG_6865.jpg','IMG_6995.jpg','IMG_7003.jpg','IMG_7070.jpg','IMG_7102.jpg','IMG_7103.jpg','IMG_7104.jpg','IMG_7105.jpg','IMG_7106.jpg','IMG_7109.jpg','IMG_7130.jpg','IMG_7996.jpg','IMG_9305.jpg','IMG_9353.jpg','IMG_9656.jpg','IMG_9657.jpg','IMG_9890.jpg','IMG_9911.jpg'],
+    'Boston': ['output-1.jpg','output-2.jpg','output-3.jpg','output-4.jpg','output-5.jpg','output-6.jpg','output-7.jpg','output-9.jpg','output-10.jpg','output-11.jpg','output-12.jpg','output-13.jpg','output-14.jpg','output-15.jpg','output-16.jpg','output-17.jpg','output-18.jpg','output-19.jpg','output-20.jpg','output-21.jpg','output-23.jpg','output-24.jpg','output-25.jpg','output-26.jpg','output-27.jpg','output-28.jpg'],
+    'Picturesque_Pierce': ['IMG_5088.jpg','IMG_5092.jpg','IMG_5094.jpg','IMG_5098.jpg','IMG_5105.jpg','IMG_5111.jpg','IMG_5121.jpg','IMG_5125.jpg','IMG_5130.jpg','IMG_5131.jpg','IMG_5132.jpg','IMG_5133.jpg','IMG_5134.jpg','IMG_5135.jpg','IMG_5136.jpg','IMG_5137.jpg','IMG_5138.jpg'],
+    'rara-nepal': ['IMG_20211009_134131.jpg','IMG_20211009_134350.jpg','IMG_20211009_154710.jpg','IMG_20211010_100914.jpg','IMG_20211010_101814.jpg','IMG_20211010_103959.jpg','IMG_20211010_114450.jpg','IMG_20211010_115338.jpg','IMG_20211010_115820.jpg','IMG_20211010_120524.jpg','IMG_20211010_132536.jpg','IMG_20211011_091107.jpg','IMG_20211011_101650.jpg','IMG_20211011_144849.jpg','IMG_20211012_120133.jpg','IMG_6861.jpg','IMG_6897.jpg','IMG_6907.jpg','IMG_6963.jpg','IMG_6975.jpg','IMG_6982.jpg','IMG_7031.jpg','IMG_7035.jpg','IMG_7141.jpg','IMG_7216.jpg','IMG_7217.jpg','IMG_7219.jpg','IMG_7270.jpg','IMG_7296.jpg','IMG_7428.jpg','IMG_7432.jpg','IMG_7436.jpg']
+  };
+
   async function renderTravelHub(containerSelector) {
     const container = document.querySelector(containerSelector);
     if (!container) return;
@@ -199,8 +217,13 @@
       dirs = nodes.filter(n => n.type === 'dir');
       console.log('GitHub API SUCCESS - found dirs:', dirs.map(d => d.name));
     } catch (err) {
-      console.log('GitHub API unavailable (local mode), using fallback album list', err);
-      // Use fallback for local development
+      console.log('GitHub API error:', err);
+      dirs = [];
+    }
+    
+    // If no directories found via API, use fallback list
+    if (dirs.length === 0) {
+      console.log('No dirs from API, using fallback album list');
       const grid = document.createElement('div');
       grid.className = 'gallery-grid gallery-grid-cards';
       
@@ -220,11 +243,6 @@
       });
       container.innerHTML = '';
       container.appendChild(grid);
-      return;
-    }
-    
-    if (dirs.length === 0) {
-      container.innerHTML = `<div class="text-center link-muted">No albums yet. Create folders under <code>${BASE}/</code>.</div>`;
       return;
     }
     const grid = document.createElement('div');
@@ -263,29 +281,128 @@
   window.TravelGallery = { renderAlbumGallery, renderTravelHub };
 })();
 
-// Simple lightbox viewer
+// Enhanced lightbox viewer with navigation
 (function(){
+  let currentIndex = 0;
+  let imageUrls = [];
+  
   function createLightbox(){
     if (document.getElementById('lb-overlay')) return;
+    
     const overlay = document.createElement('div');
     overlay.id = 'lb-overlay';
-    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:9999;padding:20px;';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.9);display:none;align-items:center;justify-content:center;z-index:9999;';
+    
+    const container = document.createElement('div');
+    container.style.cssText = 'position:relative;max-width:90vw;max-height:90vh;display:flex;align-items:center;justify-content:center;';
+    
     const img = document.createElement('img');
     img.id = 'lb-image';
-    img.style.cssText = 'max-width:95%;max-height:95%;box-shadow:0 10px 40px rgba(0,229,255,0.2);border-radius:10px;';
-    overlay.appendChild(img);
-    overlay.addEventListener('click', ()=> overlay.style.display='none');
+    img.style.cssText = 'max-width:100%;max-height:90vh;box-shadow:0 10px 40px rgba(0,229,255,0.3);border-radius:8px;user-select:none;';
+    
+    // Previous button
+    const prevBtn = document.createElement('button');
+    prevBtn.id = 'lb-prev';
+    prevBtn.innerHTML = '&#8249;';
+    prevBtn.style.cssText = 'position:absolute;left:-60px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:none;width:50px;height:50px;border-radius:50%;font-size:30px;cursor:pointer;transition:all 0.3s;color:#333;display:flex;align-items:center;justify-content:center;';
+    prevBtn.onmouseover = () => prevBtn.style.background = 'rgba(255,255,255,1)';
+    prevBtn.onmouseout = () => prevBtn.style.background = 'rgba(255,255,255,0.9)';
+    
+    // Next button
+    const nextBtn = document.createElement('button');
+    nextBtn.id = 'lb-next';
+    nextBtn.innerHTML = '&#8250;';
+    nextBtn.style.cssText = 'position:absolute;right:-60px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.9);border:none;width:50px;height:50px;border-radius:50%;font-size:30px;cursor:pointer;transition:all 0.3s;color:#333;display:flex;align-items:center;justify-content:center;';
+    nextBtn.onmouseover = () => nextBtn.style.background = 'rgba(255,255,255,1)';
+    nextBtn.onmouseout = () => nextBtn.style.background = 'rgba(255,255,255,0.9)';
+    
+    // Counter
+    const counter = document.createElement('div');
+    counter.id = 'lb-counter';
+    counter.style.cssText = 'position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);color:#fff;font-size:14px;';
+    
+    container.appendChild(img);
+    container.appendChild(prevBtn);
+    container.appendChild(nextBtn);
+    container.appendChild(counter);
+    overlay.appendChild(container);
+    
+    // Event listeners
+    prevBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigate(-1);
+    });
+    
+    nextBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navigate(1);
+    });
+    
+    // Click on overlay background to close
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeLightbox();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', handleKeyboard);
+    
     document.body.appendChild(overlay);
   }
+  
+  function handleKeyboard(e) {
+    const overlay = document.getElementById('lb-overlay');
+    if (!overlay || overlay.style.display === 'none') return;
+    
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') navigate(-1);
+    else if (e.key === 'ArrowRight') navigate(1);
+  }
+  
+  function navigate(direction) {
+    currentIndex += direction;
+    if (currentIndex < 0) currentIndex = imageUrls.length - 1;
+    if (currentIndex >= imageUrls.length) currentIndex = 0;
+    showImage(currentIndex);
+  }
+  
+  function showImage(index) {
+    const img = document.getElementById('lb-image');
+    const counter = document.getElementById('lb-counter');
+    img.src = imageUrls[index];
+    counter.textContent = `${index + 1} / ${imageUrls.length}`;
+  }
+  
+  function openLightbox(url, allUrls) {
+    createLightbox();
+    imageUrls = allUrls;
+    currentIndex = allUrls.indexOf(url);
+    if (currentIndex === -1) currentIndex = 0;
+    
+    const overlay = document.getElementById('lb-overlay');
+    overlay.style.display = 'flex';
+    showImage(currentIndex);
+  }
+  
+  function closeLightbox() {
+    const overlay = document.getElementById('lb-overlay');
+    overlay.style.display = 'none';
+  }
+  
   function onClick(e){
     const a = e.target.closest('a.lightbox-link');
     if(!a) return;
     e.preventDefault();
-    createLightbox();
-    const overlay = document.getElementById('lb-overlay');
-    const img = document.getElementById('lb-image');
-    img.src = a.getAttribute('href');
-    overlay.style.display = 'flex';
+    
+    // Get all image links in the gallery
+    const gallery = a.closest('.gallery-grid');
+    if (!gallery) return;
+    
+    const allLinks = Array.from(gallery.querySelectorAll('a.lightbox-link'));
+    const allUrls = allLinks.map(link => link.getAttribute('href'));
+    const clickedUrl = a.getAttribute('href');
+    
+    openLightbox(clickedUrl, allUrls);
   }
+  
   window.addEventListener('click', onClick);
 })();
