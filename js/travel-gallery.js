@@ -185,7 +185,7 @@
     { slug: 'Boston', cover: '/img/travel/Boston/' },
     { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/' },
     { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/' },
-    { slug: 'mit-pictures', cover: '/img/travel/mit-pictures/' },
+    { slug: 'MIT-pictures', cover: '/img/travel/MIT-pictures/' },
     { slug: 'nepal-trek', cover: '/img/travel/nepal-trek/' },
     { slug: 'santa-fe-2025', cover: '/img/travel/santa-fe-2025/' }
   ];
