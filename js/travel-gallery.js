@@ -192,14 +192,22 @@
 
   // Fallback album list for local development
   const FALLBACK_ALBUMS = [
-    { slug: 'Boston', cover: '/img/travel/Boston/' },
-    { slug: 'MIT-pictures', cover: '/img/travel/MIT-pictures/' },
-    { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/' },
-    { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/' }
+    { slug: 'Apple_Picking2025', cover: '/img/travel/Apple_Picking2025/', date: 'Date: October 11, 2025' },
+    { slug: 'Boston', cover: '/img/travel/Boston/', date: 'Date: Since 2023' },
+    { slug: 'MIT-pictures', cover: '/img/travel/MIT-pictures/', date: 'Date: Since 2023' },
+    { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/', date: 'Date: January 12, 2025' },
+    { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/', date: 'Date: October, 2021' }
   ];
+
+  // Create a map for quick date lookup
+  const ALBUM_DATES = {};
+  FALLBACK_ALBUMS.forEach(({ slug, date }) => {
+    ALBUM_DATES[slug] = date;
+  });
 
   // Fallback file lists for each album (when API is unavailable)
   const FALLBACK_FILES = {
+    'Apple_Picking2025': ['IMG_5296.jpg','IMG_5301.jpg','IMG_5303.jpg','IMG_5304.jpg','IMG_5305.jpg','IMG_5306.jpg','IMG_5307.jpg','IMG_5308.jpg','IMG_5309.jpg','IMG_5312.jpg','IMG_5313.jpg','IMG_5323.jpg','IMG_5324.jpg','IMG_5325.jpg','IMG_5329.jpg','IMG_5335.jpg','IMG_5337.jpg','IMG_5338.jpg','IMG_5339.jpg','IMG_5342.HEIC','IMG_5342.jpg','dddd.JPEG'],
     'MIT-pictures': ['IMG_3210.jpg','IMG_3211.jpg','IMG_3214.jpg','IMG_3217.jpg','IMG_3218.jpg','IMG_3219.jpg','IMG_3220.jpg','IMG_3221.jpg','IMG_3223.jpg','IMG_3224.jpg','IMG_3269.jpg','IMG_3271.jpg','IMG_3341.jpg','IMG_3343.jpg','IMG_3350.jpg','IMG_3358.jpg','IMG_3964.jpg','IMG_3965.jpg','IMG_3967.jpg','IMG_4645.jpg','IMG_4649.jpg','IMG_4650.jpg','IMG_4651.jpg','IMG_4652.jpg','IMG_4656.jpg','IMG_4657.jpg','IMG_4658.jpg','IMG_4674.jpg','IMG_4675.jpg','IMG_4676.jpg','IMG_4677.jpg','IMG_4680.jpg','IMG_4681.jpg','IMG_4683.jpg','IMG_5144.jpg','IMG_5508.jpg','IMG_5576.jpg','IMG_5779.jpg','IMG_5783.jpg','IMG_5784.jpg','IMG_5871.jpg','IMG_5879.jpg','IMG_5890.jpg','IMG_5891.jpg','IMG_6172.jpg','IMG_6460.jpg','IMG_6522.jpg','IMG_6523.jpg','IMG_6524.jpg','IMG_6525.jpg','IMG_6527.jpg','IMG_6611.jpg','IMG_6865.jpg','IMG_6995.jpg','IMG_7003.jpg','IMG_7070.jpg','IMG_7102.jpg','IMG_7103.jpg','IMG_7104.jpg','IMG_7105.jpg','IMG_7106.jpg','IMG_7109.jpg','IMG_7130.jpg','IMG_7996.jpg','IMG_9305.jpg','IMG_9353.jpg','IMG_9656.jpg','IMG_9657.jpg','IMG_9890.jpg','IMG_9911.jpg'],
     'Boston': ['output-1.jpg','output-2.jpg','output-3.jpg','output-4.jpg','output-5.jpg','output-6.jpg','output-7.jpg','output-9.jpg','output-10.jpg','output-11.jpg','output-12.jpg','output-13.jpg','output-14.jpg','output-15.jpg','output-16.jpg','output-17.jpg','output-18.jpg','output-19.jpg','output-20.jpg','output-21.jpg','output-23.jpg','output-24.jpg','output-25.jpg','output-26.jpg','output-27.jpg','output-28.jpg'],
     'Picturesque_Pierce': ['IMG_5088.jpg','IMG_5092.jpg','IMG_5094.jpg','IMG_5098.jpg','IMG_5105.jpg','IMG_5111.jpg','IMG_5121.jpg','IMG_5125.jpg','IMG_5130.jpg','IMG_5131.jpg','IMG_5132.jpg','IMG_5133.jpg','IMG_5134.jpg','IMG_5135.jpg','IMG_5136.jpg','IMG_5137.jpg','IMG_5138.jpg'],
@@ -227,7 +235,7 @@
       const grid = document.createElement('div');
       grid.className = 'gallery-grid gallery-grid-cards';
       
-      FALLBACK_ALBUMS.forEach(({ slug, cover }) => {
+      FALLBACK_ALBUMS.forEach(({ slug, cover, date }) => {
         const card = document.createElement('a');
         card.className = 'travel-card';
         card.href = `/travel/${slug}.html`;
@@ -236,7 +244,7 @@
           <div class="travel-card-media" style="background-image:url('${cover}')"></div>
           <div class="travel-card-body">
             <h4>${toTitle(slug)}</h4>
-            <span class="link-muted">${slug}</span>
+            <span class="link-muted">${date}</span>
           </div>
         `;
         grid.appendChild(card);
@@ -264,11 +272,12 @@
       const card = document.createElement('a');
       card.className = 'travel-card';
       card.href = `/travel/${slug}.html`;
+      const date = ALBUM_DATES[slug] || 'Date: .......';
       card.innerHTML = `
-        <div class="travel-card-media" ${cover ? `style="background-image:url('${cover}')"` : ''}></div>
+        <div class="travel-card-media" ${cover ? `style="background-image:url('${cover}')"`  : ''}></div>
         <div class="travel-card-body">
           <h4>${toTitle(slug)}</h4>
-          <span class="link-muted">${slug}</span>
+          <span class="link-muted">${date}</span>
         </div>
       `;
       grid.appendChild(card);
