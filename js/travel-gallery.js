@@ -180,11 +180,51 @@
     container.appendChild(grid);
   }
 
+  // Fallback album list for local development
+  const FALLBACK_ALBUMS = [
+    { slug: 'Boston', cover: '/img/travel/Boston/' },
+    { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/' },
+    { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/' },
+    { slug: 'mit-pictures', cover: '/img/travel/mit-pictures/' },
+    { slug: 'nepal-trek', cover: '/img/travel/nepal-trek/' },
+    { slug: 'santa-fe-2025', cover: '/img/travel/santa-fe-2025/' }
+  ];
+
   async function renderTravelHub(containerSelector) {
     const container = document.querySelector(containerSelector);
     if (!container) return;
-    const nodes = await listFolder(BASE);
-    const dirs = nodes.filter(n => n.type === 'dir');
+    
+    // Try GitHub API first, fallback to hardcoded list
+    let dirs = [];
+    try {
+      const nodes = await listFolder(BASE);
+      dirs = nodes.filter(n => n.type === 'dir');
+      console.log('GitHub API SUCCESS - found dirs:', dirs.map(d => d.name));
+    } catch (err) {
+      console.log('GitHub API unavailable (local mode), using fallback album list', err);
+      // Use fallback for local development
+      const grid = document.createElement('div');
+      grid.className = 'gallery-grid gallery-grid-cards';
+      
+      FALLBACK_ALBUMS.forEach(({ slug, cover }) => {
+        const card = document.createElement('a');
+        card.className = 'travel-card';
+        card.href = `/travel/${slug}.html`;
+        console.log('Creating card for:', slug);
+        card.innerHTML = `
+          <div class="travel-card-media" style="background-image:url('${cover}')"></div>
+          <div class="travel-card-body">
+            <h4>${toTitle(slug)}</h4>
+            <span class="link-muted">${slug}</span>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      container.innerHTML = '';
+      container.appendChild(grid);
+      return;
+    }
+    
     if (dirs.length === 0) {
       container.innerHTML = `<div class="text-center link-muted">No albums yet. Create folders under <code>${BASE}/</code>.</div>`;
       return;
