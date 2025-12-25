@@ -183,11 +183,9 @@
   // Fallback album list for local development
   const FALLBACK_ALBUMS = [
     { slug: 'Boston', cover: '/img/travel/Boston/' },
-    { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/' },
-    { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/' },
     { slug: 'MIT-pictures', cover: '/img/travel/MIT-pictures/' },
-    { slug: 'nepal-trek', cover: '/img/travel/nepal-trek/' },
-    { slug: 'santa-fe-2025', cover: '/img/travel/santa-fe-2025/' }
+    { slug: 'Picturesque_Pierce', cover: '/img/travel/Picturesque_Pierce/' },
+    { slug: 'rara-nepal', cover: '/img/travel/rara-nepal/' }
   ];
 
   async function renderTravelHub(containerSelector) {
